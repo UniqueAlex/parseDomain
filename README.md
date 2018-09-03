@@ -1,6 +1,9 @@
-#题目描述
-
+##题目描述
+```
 尽可能全面正确的解析一个任意url的所有参数为Object。
+```
+##代码格式
+```
 var url = 'http://www.domain.com/?user=anonymous&id=123&id=456&city=%E5%8C%97%E4%BA%AC&d&enabled';
 parseParam(url);
 /**
@@ -12,3 +15,4 @@ parseParam(url);
    enabled: true, // 未指定值的 key 约定值为 true
 }
 */
+```
