@@ -20,7 +20,6 @@
                             }
                         }else{
                             if(!Array.isArray(obj[tmpkey])){//是否是第三个，即是否已经是数组
-                                let temEle;
                                 if(Object.prototype.toString.call(obj[tmpkey]) === '[object String]'){//判断当前对象中这个属性的值是字符串还是数值
                                     obj[tmpkey] = obj[tmpkey].split();
                                     obj[tmpkey].push(el.split('=')[1]);
