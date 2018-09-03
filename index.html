@@ -1,0 +1,47 @@
+<html !DOCTYPE>
+    <script>
+        let url = 'http://www.domain.com/?user=anonymous&id=abc&id=def&id=ghi&city=%E5%8C%97&enable';
+        parseParam(url);
+        function parseParam(url){
+            let Rex = /\?/g;
+            if(Rex.test(url)){
+                const index = url.indexOf('?');
+                let arrStr = url.substring(index+1);
+                const arr = arrStr.split('&');
+                let obj = {};
+                arr.map(el => {
+                    let tmpkey = el.split('=')[0];
+                    if(el.indexOf('=') > -1){               
+                        if(!obj[tmpkey]){//是否是重复的
+                            if(!isNaN(el.split('=')[1])){
+                                obj[tmpkey] = parseInt(el.split('=')[1]);
+                            }else{
+                                obj[tmpkey] = el.split('=')[1];
+                            }
+                        }else{
+                            if(!Array.isArray(obj[tmpkey])){//是否是第三个，即是否已经是数组
+                                let temEle;
+                                if(Object.prototype.toString.call(obj[tmpkey]) === '[object String]'){//判断当前对象中这个属性的值是字符串还是数值
+                                    obj[tmpkey] = obj[tmpkey].split();
+                                    obj[tmpkey].push(el.split('=')[1]);
+                                    
+                                }else{
+                                    obj[tmpkey] = obj[tmpkey].toString().split();
+                                    obj[tmpkey].push(el.split('=')[1]);
+                                }
+                            }else{
+                                obj[tmpkey].push(el.split('=')[1]);
+                            }                       
+                        }                        
+                    }else{
+                        obj[tmpkey] = true;
+                    }
+
+                })
+                console.log(obj);
+            }else{
+                console.log("no parameter")
+            }
+        }
+    </script>
+</html>
